@@ -21,10 +21,10 @@ public class OfferEntity extends BaseEntity{
     @ManyToOne
     private ModelEntity model;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private EngineEnum engine;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TransmissionEnum transmission;
 
     @Column
