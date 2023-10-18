@@ -10,23 +10,29 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<header>
+<header th:with="isLogged=${@loggedUser.isLogged()}">
     <nav class="navbar navbar-expand-lg bg-nav rounded">
-        <a class="nav-link text-primary active h5 text-stroke" href="/">Reseller App</a>
-        <a class="nav-link text-primary active h5 text-stroke" href="/">Add Offer</a>
+        <a class="nav-link text-primary active h5 text-stroke" th:href="@{/}">Reseller App</a>
+        <a th:if="${isLogged}" class="nav-link text-primary active h5 text-stroke" href="/">Add Offer</a>
 
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
                 <li class="nav-item col-md-4">
-                    <a class="nav-link text-primary active h5 text-stroke" href="/">Login</a>
+                    <span class="nav-link text-primary active h5 text-stroke" th:text="${@loggedUser.getUsername()}"></span>
+                </li>
+                <li th:unless="${isLogged}" class="nav-item col-md-4">
+                    <a class="nav-link text-primary active h5 text-stroke" th:href="@{/login}">Login</a>
                 </li>
 
-                <li class="nav-item col-md-4">
-                    <a class="nav-link text-primary active h5 text-stroke" href="/">Register</a>
+                <li  th:unless="${isLogged}" class="nav-item col-md-4">
+                    <a class="nav-link text-primary active h5 text-stroke" th:href="@{/register}">Register</a>
                 </li>
 
-                <li class="nav-item col-md-4">
-                    <a class="nav-link text-primary active h5 text-stroke" href="/">Logout</a>
+                <li th:if="${isLogged}" class="nav-item col-md-4">
+                    <form th:action="/logout" th:method="POST">
+                        <a class="nav-link text-primary active h5 text-stroke">Logout</a>
+                    </form>
+
                 </li>
             </ul>
         </div>

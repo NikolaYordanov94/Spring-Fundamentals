@@ -16,6 +16,16 @@ spring:
     password: 'niki090347'
     username: 'root'
     url: jdbc:mysql://localhost:3306/reseller?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
 logging:
   level:
     org:
@@ -27,3 +37,6 @@ logging:
     blog: WARN
 server:
   port: 8080
+
+
+
