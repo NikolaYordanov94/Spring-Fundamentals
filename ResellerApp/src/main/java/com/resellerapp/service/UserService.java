@@ -8,4 +8,6 @@ public interface UserService {
     boolean register(UserRegisterBindingModel userRegisterBindingModel);
 
     boolean login(UserLoginBindingModel userLoginBindingModel);
+
+    void logout();
 }

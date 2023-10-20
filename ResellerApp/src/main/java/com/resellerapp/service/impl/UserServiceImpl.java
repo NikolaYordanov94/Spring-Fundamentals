@@ -59,6 +59,12 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public void logout() {
+        loggedUser.setUsername(null);
+        loggedUser.setLogged(false);
+    }
+
     private User findUserByUserName(String username){
         return this.userRepository.findByUsername(username);
     }
