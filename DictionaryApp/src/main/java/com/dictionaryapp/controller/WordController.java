@@ -26,6 +26,10 @@ public class WordController {
 
     @GetMapping("/add")
     public ModelAndView addWord(@ModelAttribute("wordAddBindingModel") WordAddBindingModel wordAddBindingModel){
+        if (!loggedUser.isLogged()) {
+            return new ModelAndView("redirect:/");
+        }
+
         return new ModelAndView("word-add");
     }
 

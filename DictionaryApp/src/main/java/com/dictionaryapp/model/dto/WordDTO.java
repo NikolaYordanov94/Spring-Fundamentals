@@ -1,31 +1,37 @@
 package com.dictionaryapp.model.dto;
 
+import com.dictionaryapp.model.entity.User;
+import com.dictionaryapp.model.entity.Word;
 import com.dictionaryapp.model.enums.LanguageName;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class WordAddBindingModel {
+public class WordDTO {
 
-    @Size(min = 2, max = 40, message = "The term length must be between 2 and 40 characters!")
     private String term;
 
-    @Size(min = 2, max = 80, message = "The translation length must be between 2 and 80 characters!")
     private String translation;
 
-    @Size(min = 2, max = 200, message = "The example must be between 2 and 200 characters!")
     private String example;
 
+    private User addedBy;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @PastOrPresent
     private LocalDate inputDate;
 
-    @NotNull(message = "You must select a language!")
     private LanguageName language;
+
+    public static WordDTO createFromWord(Word word){
+        WordDTO wordDTO = new WordDTO();
+
+        wordDTO.setTerm(word.getTerm());
+        wordDTO.setExample(word.getExample());
+        wordDTO.setTranslation(word.getTranslation());
+        wordDTO.setAddedBy(word.getAddedBy());
+        wordDTO.setInputDate(word.getInputDate());
+        wordDTO.setLanguage(word.getLanguage().getLanguageName());
+
+        return wordDTO;
+    }
 
     public String getTerm() {
         return term;
@@ -49,6 +55,14 @@ public class WordAddBindingModel {
 
     public void setExample(String example) {
         this.example = example;
+    }
+
+    public User getAddedBy() {
+        return addedBy;
+    }
+
+    public void setAddedBy(User addedBy) {
+        this.addedBy = addedBy;
     }
 
     public LocalDate getInputDate() {

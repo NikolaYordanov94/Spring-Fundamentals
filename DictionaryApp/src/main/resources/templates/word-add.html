@@ -66,7 +66,7 @@
                 <label for="language" class="h4 mb-2">Language</label>
             </div>
             <select class="browser-default custom-select" id="language"
-                    th:field="*{languageName}"
+                    th:field="*{language}"
                     th:errorclass="bg-danger">
                 <option value="">Select language</option>
                 <option value="GERMAN">German</option>
@@ -75,7 +75,7 @@
                 <option value="ITALIAN">Italian</option>
             </select>
 
-            <small th:errors="*{languageName}" class="text-danger">Language error message</small>
+            <small th:errors="*{language}" class="text-danger">Language error message</small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">

@@ -53,6 +53,10 @@ public class UserController {
 
     @GetMapping("/login")
     public ModelAndView login(@ModelAttribute("userLoginBindingModel") UserLoginBindingModel userLoginBindingModel){
+        if (loggedUser.isLogged()) {
+            return new ModelAndView("redirect:/home");
+        }
+
         return new ModelAndView("login");
     }
 
@@ -60,6 +64,9 @@ public class UserController {
     public ModelAndView login(
             @ModelAttribute("userLoginBindingModel") @Valid UserLoginBindingModel userLoginBindingModel,
                               BindingResult bindingResult){
+        if (loggedUser.isLogged()) {
+            return new ModelAndView("redirect:/home");
+        }
 
         if (bindingResult.hasErrors()) {
             return new ModelAndView("login");
