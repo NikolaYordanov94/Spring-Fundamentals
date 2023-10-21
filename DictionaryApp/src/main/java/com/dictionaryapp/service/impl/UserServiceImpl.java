@@ -15,11 +15,14 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final LoggedUser loggedUser;
 
+
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, LoggedUser loggedUser) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.loggedUser = loggedUser;
     }
+
+
 
     @Override
     public boolean register(UserRegistrationBindingModel userRegistrationBindingModel) {
